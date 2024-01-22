@@ -15,7 +15,7 @@ sudo apt install python3.8
 sudo apt install python3-pyftpdlib
 ```
 
-3.) If you have installed everything, open the `ftpserver.py` file and edit the additional details Comment with `//`
+3.) If you have installed everything, open the `ftpserver.py` file and edit the additional details Comment with `#`
 
 4.) Now everything should be ready and working. You can start the FTPServer with the command: `python3 ftpserver.py`
 
