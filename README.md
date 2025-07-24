@@ -17,7 +17,9 @@ sudo apt install python3-pyftpdlib
 
 3.) If you have installed everything, open the `ftpserver.py` file and edit the additional details Comment with `#`
 
-4.) Now everything should be ready and working. You can start the FTPServer with the command: `python3 ftpserver.py`
+4.) Don't Forget: Open the Firewall Port: `sudo ufw allow 2121/tcp`
+
+5.) Now everything should be ready and working. You can start the FTPServer with the command: `python3 ftpserver.py`
 
 Now you can connect using a program like "**WinSCP**" or "**FileZilla**" Please remember to set the settings in the FTP program to "**FTP**" and not "**SFTP**" or something else.
 
