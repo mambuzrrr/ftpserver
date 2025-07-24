@@ -10,7 +10,7 @@ import os
 FTP_USER = "your_username"
 FTP_PASSWORD = "your_password"
 FTP_DIRECTORY = "/path/to/folder"
-FTP_HOST = "0.0.0.0"         # 0.0.0.0 für alle Interfaces
+FTP_HOST = "0.0.0.0"         # 0.0.0.0 for all interfaces
 FTP_PORT = 2121              # Dont use Port 69 (its standard port of TFTP)
 # ============================
 
