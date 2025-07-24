@@ -1,24 +1,40 @@
 # Made by Brejax
+# Simple FTP Server – Cleaned & Improved
+
 from pyftpdlib.authorizers import DummyAuthorizer
 from pyftpdlib.handlers import FTPHandler
 from pyftpdlib.servers import FTPServer
+import os
+
+# ========== CONFIG ==========
+FTP_USER = "your_username"
+FTP_PASSWORD = "your_password"
+FTP_DIRECTORY = "/path/to/folder"
+FTP_HOST = "0.0.0.0"         # 0.0.0.0 für alle Interfaces
+FTP_PORT = 2121              # Dont use Port 69 (its standard port of TFTP)
+# ============================
 
 def start_ftp_server():
+    if not os.path.isdir(FTP_DIRECTORY):
+        raise FileNotFoundError(f"FTP root directory not found: {FTP_DIRECTORY}")
+        
     authorizer = DummyAuthorizer()
-
-    username = "USERHERE" # Add a User with a Username...
-    password = "PASSWORDHERE" # Add a User with a Password...
-    
-    # Insert the path here where the user will later have access...
-    remote_directory = "/path/to/folder"
-
-    authorizer.add_user(username, password, remote_directory, perm="elradfmw") # See Github for the meaning of "elradfmw"...
+    authorizer.add_user(FTP_USER, FTP_PASSWORD, FTP_DIRECTORY, perm="elradfmw")
 
     handler = FTPHandler
     handler.authorizer = authorizer
 
-    server = FTPServer(("YOURIP/DOMAINHERE", 69), handler) # Set your IP-Address or Domain and Port "69" (Can be any number)...
-    server.serve_forever()
+    print(f"[+] Starting FTP server on {FTP_HOST}:{FTP_PORT}")
+    print(f"[+] Serving directory: {FTP_DIRECTORY}")
+    print(f"[+] Login with: {FTP_USER} / {FTP_PASSWORD}")
 
+    server = FTPServer((FTP_HOST, FTP_PORT), handler)
+    server.serve_forever()
+    
 if __name__ == "__main__":
-    start_ftp_server() # Yes... starting FTP Server LOL...
+    try:
+        start_ftp_server()
+    except KeyboardInterrupt:
+        print("\n[!] Server manually stopped.")
+    except Exception as e:
+        print(f"[!] Error: {e}")
